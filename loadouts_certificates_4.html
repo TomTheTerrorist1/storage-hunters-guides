@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Loadouts & Certificates Guide</title>
+<style>
+  :root{
+    --bg: #0b0e14;
+    --panel: #171c26;
+    --panel-alt: #1b212d;
+    --border: #2b3241;
+    --text: #e7eaf0;
+    --text-dim: #97a0b0;
+    --head: #ffffff;
+
+    --c-loadout: #6fa8ff;
+    --c-stats: #4fd18a;
+    --c-cert: #c084fc;
+    --c-premium: #f4c542;
+    --diamond: #5fb6e8;
+  }
+  *{ box-sizing: border-box; }
+  html, body{ height: 100%; }
+  body{
+    margin:0;
+    padding: 0;
+    background:
+      radial-gradient(1200px 600px at 10% 0%, #1a2233 0%, transparent 55%),
+      radial-gradient(1100px 700px at 100% 100%, #1c1a2a 0%, transparent 50%),
+      var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+  }
+
+  .banner{
+    padding: 22px 3vw 16px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(111,168,255,0.08), rgba(192,132,252,0.08), rgba(244,197,66,0.08));
+  }
+  .banner-inner{ max-width: 1900px; margin: 0 auto; }
+  .eyebrow{
+    color: var(--c-cert);
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    margin: 0 0 4px;
+  }
+  .page-title{
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--head);
+    margin: 0 0 4px;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .page-sub{
+    color: var(--text-dim);
+    font-size: 12.5px;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .board{
+    max-width: 1900px;
+    margin: 0 auto;
+    padding: 18px 3vw 22px;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr 1.15fr;
+    gap: 16px;
+    align-items: start;
+  }
+  @media (max-width: 1500px){
+    .board{ grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 760px){
+    .board{ grid-template-columns: 1fr; }
+  }
+
+  .col{
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 16px 18px;
+    border-top: 3px solid var(--accent-color, var(--border));
+  }
+  .col-loadout{ --accent-color: var(--c-loadout); }
+  .col-stats{ --accent-color: var(--c-stats); }
+  .col-cert{ --accent-color: var(--c-cert); }
+  .col-premium{ --accent-color: var(--c-premium); }
+
+  h2{
+    font-size: 15.5px;
+    font-weight: 800;
+    color: var(--head);
+    margin: 0 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  h2::before{
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent-color, var(--c-loadout));
+    box-shadow: 0 0 8px var(--accent-color, var(--c-loadout));
+    flex: none;
+  }
+  h3{
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--accent-color);
+    margin: 0 0 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .intro-note{
+    color: var(--text-dim);
+    font-size: 11.5px;
+    margin: -2px 0 10px;
+    line-height: 1.45;
+  }
+  .body-note{
+    color: var(--text);
+    font-size: 11.8px;
+    line-height: 1.5;
+    margin: 0 0 8px;
+    padding-left: 10px;
+    border-left: 2px solid var(--c-cert);
+  }
+  .body-note:last-child{ margin-bottom: 0; }
+  .obtain-note{
+    color: #ffe9b3;
+    font-size: 11.5px;
+    line-height: 1.5;
+    margin: 0 0 10px;
+    padding: 10px 12px;
+    background: rgba(244,197,66,0.08);
+    border: 1px solid rgba(244,197,66,0.35);
+    border-left: 3px solid var(--c-premium);
+    border-radius: 6px;
+  }
+
+  ul{ margin: 0 0 2px; padding-left: 0; list-style: none; }
+  li{
+    font-size: 11.8px;
+    line-height: 1.45;
+    margin-bottom: 7px;
+    color: var(--text);
+    padding-left: 16px;
+    position: relative;
+  }
+  li::before{
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-size: 11px;
+  }
+  li:last-child{ margin-bottom: 0; }
+  li strong{ color: var(--head); }
+  .diamond{ color: var(--diamond); font-weight: 700; }
+
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--panel-alt);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  thead th{
+    text-align: left;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--accent-color);
+    background: transparent;
+    padding: 6px 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--accent-color);
+  }
+  tbody td{
+    padding: 7px 10px;
+    font-size: 11px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.35;
+  }
+  tbody tr:last-child td{ border-bottom: none; }
+  tbody tr:nth-child(even) td{ background: rgba(255,255,255,0.015); }
+  .stat-name{ font-weight: 800; color: var(--accent-color); white-space: nowrap; }
+  .slot{ color: var(--text-dim); white-space: nowrap; font-size: 10.3px; }
+  .cert-link{ color: var(--c-premium); font-weight: 600; }
+  .mult{ color: #7ee89a; font-weight: 700; white-space: nowrap; }
+
+  .section-block{ margin-bottom: 14px; }
+  .section-block:last-child{ margin-bottom: 0; }
+
+  /* mutation colors, matching Mutations Guide */
+  .m-silver{ color:#ffffff; }
+  .m-gold{ color:#f4d233; font-weight:800; text-shadow:0 0 8px rgba(244,210,51,0.35); }
+  .m-corrupted{ color:#33e04c; font-weight:800; text-shadow:0 0 8px rgba(51,224,76,0.35); }
+  .m-diamond{ color:#4fc7f0; font-weight:700; }
+  .m-gem{ color:#c34ff0; font-weight:700; }
+  .m-chrome{ color:#dfe3ea; text-shadow:0 0 6px rgba(255,255,255,0.25); }
+  .m-hologram{ color:#7fe9d8; text-shadow:0 0 8px rgba(127,233,216,0.4); text-decoration: underline; text-decoration-color: rgba(127,233,216,0.5); }
+  .m-void{ color:#c65cf0; font-weight:800; }
+  .m-secret{ color:#e0393e; font-weight:800; text-shadow:0 0 10px rgba(224,57,62,0.5); }
+  .m-rainbow{
+    font-weight:800;
+    background: linear-gradient(90deg,#ff5f5f,#ffd35f,#8bff5f,#5fe0ff,#a15fff,#ff5fc8);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.25));
+  }
+  .m-onyx{ color:#9aa3b2; }
+  .sub-table-title{
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--accent-color);
+    margin: 12px 0 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+</style>
+</head>
+<body>
+
+  <div class="banner">
+    <div class="banner-inner">
+      <p class="eyebrow">FULL REFERENCE</p>
+      <h1 class="page-title">Loadouts & Certificates Guide</h1>
+      <p class="page-sub">Loadout slots, accessory stat modifiers, and every stat rollable from Ripped, Wooden, and Premium Certificates of Authenticity.</p>
+    </div>
+  </div>
+
+  <div class="board">
+
+    <!-- COLUMN 1: Stat Modifiers -->
+    <div class="col col-stats">
+      <h2>Stat Modifiers</h2>
+      <p class="intro-note">Accessories you wear can roll bonuses that change how you play. Green stats are buffs that help you; red stats are nerfs that work against you. Matching stats stack across everything you wear, and grading an accessory makes its buffs and passives stronger.</p>
+      <table>
+        <thead><tr><th>Stat</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td class="stat-name">Luck</td><td>Raises the value of items found in auctions, safes, and fishing; boosts average garage value.</td></tr>
+          <tr><td class="stat-name">Energy Drink Time</td><td>Energy drink luck lasts longer.</td></tr>
+          <tr><td class="stat-name">Tip Chance</td><td>Better chance NPC shoppers leave a tip.</td></tr>
+          <tr><td class="stat-name">Walkspeed</td><td>Faster walking speed.</td></tr>
+          <tr><td class="stat-name">Vehicle Speed</td><td>Faster vehicle top speed.</td></tr>
+          <tr><td class="stat-name">Bid Recovery</td><td>Recover faster after a missed bid.</td></tr>
+          <tr><td class="stat-name">Bid Zone Width</td><td>Widens the green zone on the bid bar.</td></tr>
+          <tr><td class="stat-name">Bid Arrow Speed</td><td>Slows the bid cursor for easier stops.</td></tr>
+          <tr><td class="stat-name">NPC Offers Bonus</td><td>NPC shoppers offer more for items sold.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- COLUMN 3: Certificates of Authenticity (basic) -->
+    <div class="col col-cert">
+      <h2>Certificates of Authenticity</h2>
+
+<div class="section-block">
+        <h3>Basic Authentication Stats</h3>
+        <p class="intro-note">Standard bonuses from any Ripped and Wooden Certificate Of Authenticity except a <span class="cert-link">Premium Certificate</span> (which only ever rolls a Premium Authentication), regardless of slot:</p>
+        <ul>
+          <li>Bid Recovery</li>
+          <li>Bid Arrow Speed</li>
+          <li>Bid Zone Width</li>
+          <li>Tip Chance</li>
+          <li>NPC Offers Bonus</li>
+          <li>Walkspeed</li>
+          <li>Energy Drink Time — luck bonus lasts longer while worn.</li>
+        </ul>
+      </div>
+
+      <div class="section-block">
+        <h3>Exclusive Stats — Ripped & Wooden Certificates</h3>
+        <table>
+          <thead><tr><th>Stat</th><th>Slot</th><th>Effect</th></tr></thead>
+          <tbody>
+            <tr><td class="stat-name">Sunny</td><td class="slot">Head</td><td>Increases luck during the day.</td></tr>
+            <tr><td class="stat-name">Nocturnal</td><td class="slot">Head</td><td>Increases luck during the night.</td></tr>
+            <tr><td class="stat-name">Overcharged</td><td class="slot">Head</td><td>Energy Drinks grant more luck while worn.</td></tr>
+            <tr><td class="stat-name">Raindrop</td><td class="slot">Back</td><td>Increases luck while it rains.</td></tr>
+            <tr><td class="stat-name">Focused</td><td class="slot">Back</td><td>Boosts the accessory's strongest original buff.</td></tr>
+            <tr><td class="stat-name">Timekeeper</td><td class="slot">Wrist</td><td>Reduces the free Time Capsule roll cycle duration.</td></tr>
+            <tr><td class="stat-name">Connected</td><td class="slot">Wrist</td><td>Random extra Luck per friend, stacking with base per-friend Luck. Cap unknown.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- COLUMN 4: Premium Authentications -->
+    <div class="col col-premium">
+      <h2>Premium Authentications</h2>
+      <p class="obtain-note">Trade a Wooden Certificate Of Authenticity and 150 Diamonds at the Premium Certificates NPC in Lucky Bay to unlock the stats below on an accessory.</p>
+      <table>
+        <thead><tr><th>Authentication</th><th>Slot</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td class="stat-name">Club Pact</td><td class="slot">Wrist</td><td>Adds Luck shared by every member of your active club while equipped; contributions from different members stack.</td></tr>
+          <tr><td class="stat-name">Droughtbreaker</td><td class="slot">Back</td><td>At Luck Limit 100%, each auction without a mutation adds Luck to the next, stacking up to 5x. Resets on a mutation appearing; inactive while Luck is lowered.</td></tr>
+          <tr><td class="stat-name">Golden Hour</td><td class="slot">Back</td><td>Gradually gains Luck while equipped — 2%/min at max (as low as ~0.5%/min, unconfirmed), capping at +100%. Pauses when removed; rejoining within 20 min keeps progress.</td></tr>
+          <tr><td class="stat-name">Mutated Luck</td><td class="slot">Head</td><td>Grants extra Luck from the worn accessory's strongest mutation.</td></tr>
+          <tr><td class="stat-name">Temporal Split</td><td class="slot">Wrist</td><td>Chance for an item to instantly gain a Time Capsule mutation when placed in the Time Capsule.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-table-title">Mutated Luck — Bonus by Mutation</div>
+      <p class="intro-note" style="margin-top:-4px;">Head accessories only. Each worn accessory grants extra luck from its strongest mutator.</p>
+      <table>
+        <thead><tr><th>Mutation</th><th>Luck Bonus</th></tr></thead>
+        <tbody>
+          <tr><td class="m-silver">Silver</td><td class="mult">+5% Luck</td></tr>
+          <tr><td class="m-gold">Gold</td><td class="mult">+10% Luck</td></tr>
+          <tr><td class="m-corrupted">Corrupted</td><td class="mult">+15% Luck</td></tr>
+          <tr><td class="m-diamond">Diamond</td><td class="mult">+20% Luck</td></tr>
+          <tr><td class="m-gem">Gem</td><td class="mult">+25% Luck</td></tr>
+          <tr><td class="m-chrome">Chrome</td><td class="mult">+30% Luck</td></tr>
+          <tr><td class="m-hologram">Hologram</td><td class="mult">+35% Luck</td></tr>
+          <tr><td class="m-void">Void</td><td class="mult">+40% Luck</td></tr>
+          <tr><td class="m-secret">Secret</td><td class="mult">+45% Luck</td></tr>
+          <tr><td class="m-rainbow">Rainbow</td><td class="mult">+60% Luck</td></tr>
+          <tr><td class="m-onyx">Onyx</td><td class="mult">+75% Luck</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</body>
+</html>
